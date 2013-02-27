@@ -5,10 +5,26 @@ from Levenshtein import *
 from werkzeug.wsgi import SharedDataMiddleware
 import rdflib
 from rdflib.graph import Graph
-from itertools import permutations
+from itertools import *
 from nltk.corpus import stopwords
-from nltk.stem.wordnet import WordNetLemmatizer
+from nltk import SnowballStemmer
+from compiler.ast import flatten
 
+# types of query
+# --------------
+# (1) diabetes            -> Diabetes is a Disease
+# (2) diet                -> Diet is a HealthDeterminant
+# (3) diet diabetes       -> Diet is a HD which has an effect on Diabetes
+# (4) health determinants -> BMI, Diet, etc are HD having effect on Diabetes
+#     diabetes
+# (5) prevalence          -> PrevalenceIndicator is an Indicator
+# (6) diabetes indicators -> DII and DPI are Indicator of Diabetes
+# (7) prevalence diabetes -> DiabetesPrevalenceIndicator is an Indicator of Diabetes
+# -----------------------------------------------------------------------------------
+# (8) prevalence diabetes -> ask for what regions? neighoborhoods, CTs
+#     montreal regions
+# (9) prevalence diabetes -> DPI for Montreal re
+#     montreal 2005
 
 if __name__ == '__main__':
 
@@ -33,23 +49,6 @@ if __name__ == '__main__':
 
     app = Flask('PopHR')
 
-    # types of query
-    # --------------
-    # (1) diabetes            -> Diabetes is a Disease
-    # (2) diet                -> Diet is a HealthDeterminant
-    # (3) diet diabetes       -> Diet is a HD which has an effect on Diabetes
-    # (4) health determinants -> BMI, Diet, etc are HD having effect on Diabetes
-    #     diabetes
-    # (5) prevalence          -> PrevalenceIndicator is an Indicator
-    # (6) diabetes indicators -> DII and DPI are Indicator of Diabetes
-    # (7) prevalence diabetes -> DiabetesPrevalenceIndicator is an Indicator of Diabetes
-    # -----------------------------------------------------------------------------------
-    # (8) prevalence diabetes -> ask for what regions? neighoborhoods, CTs
-    #     montreal regions
-    # (9) prevalence diabetes -> DPI for Montreal re
-    #     montreal 2005
-
-    # (1, 2, 5)
     def findTopAncestorConcept(g, what):
         q = """ prefix : <http://www.semanticweb.org/ontologies/2013/1/exmple.owl#>
                 prefix owl: <http://www.w3.org/2002/07/owl#>
@@ -68,7 +67,7 @@ if __name__ == '__main__':
         return sorted(results)[0][1] if results else None
 
 
-    def findLowHighDiseaseRelationships(g, what, level, disease, relation=None):
+    def findLowHighDiseaseRelationships(g, level, what, disease, relation=None):
         assert level in ['lower', 'higher']
         rel_clause = ''
         if relation:
@@ -98,8 +97,9 @@ if __name__ == '__main__':
         g = Graph()
         g.parse('../PopHR-ToyOnto2.rdf')
         tokens = query.split()
-        for p in permutations(tokens, 2):
-            res = findLowHighDiseaseRelationships(g, p[0], 'lower', p[1])
+        for p in product(['lower', 'higher'], permutations(tokens, 2)):
+            p = flatten(p)
+            res = findLowHighDiseaseRelationships(g, p[0], p[1], p[2])
             if res:
                 print p
                 pprint(res)
@@ -107,41 +107,68 @@ if __name__ == '__main__':
         #pprint(findTopAncestorConcept(g, 'diabetes'))
 
 
+    def concept(s):
+        return '<span class="concept">%s</span>' % s
+
+
     @app.route('/query', methods=['GET'])
     def query():
 
-        lmtzr = WordNetLemmatizer()
-        tokens = re.split('\W+', request.args['q'])
-        tokens = [lmtzr.lemmatize(w) for w in tokens if w.lower() not in set(stopwords.words('english'))]
+        stemmer = SnowballStemmer('english')
+        raw_tokens = [w for w in re.split('\W+', request.args['q']) if w.lower() not in set(stopwords.words('english'))]
+        tokens = [stemmer.stem(w) for w in raw_tokens]
+        token_s2r = dict(zip(tokens, raw_tokens))
 
         g = Graph()
         g.parse('../PopHR-ToyOnto2.rdf')
 
-        q1_results = []
-        matched = []
-        for w in tokens:
-            res = findTopAncestorConcept(g, w)
-            if res:
-                q1_results.append(res)
-                matched.append(w)
+        results = []
+        matched_tokens = []
+        query_type = None
+
+        for n in [3, 2]: # important: begin by most specific query
+            if n > len(tokens): continue
+            for p in product(['lower', 'higher'], permutations(tokens, n)):
+                p = flatten(p)
+                p3 = p[3] if n == 3 else None # relation
+                results = findLowHighDiseaseRelationships(g, p[0], p[1], p[2], p3)
+                if results:
+                    query_type = 'disease_relationship'
+                    matched_tokens = [token_s2r[w] for w in p[1:]] # first is lower/higher
+                    break
+            if results: break
+
+        if not results:
+            for w in tokens:
+                result = findTopAncestorConcept(g, w)
+                if result:
+                    query_type = 'single_concept'
+                    results.append(result)
+                    matched_tokens.append(token_s2r[w]) # dont break, there might be another single concepts!
 
         html_results = []
-        if q1_results:
-            q1_results_html = '<p>&gt; %s</p>' % ' and '.join(['<span class="concept">%s</span> is a <span class="concept">%s</span>' % (res['lower'], res['highest']) for res in q1_results])
-            html_results.append(q1_results_html)
+
+        if query_type == 'disease_relationship':
+            for r in results:
+                s = '<p>&gt; %s is a %s in relation %s to %s</p>' % tuple([concept(r[k]) for k in ['lower', 'higher', 'relation', 'disease']])
+                html_results.append(s)
+        elif query_type == 'single_concept':
+             #s = '<p>&gt; %s</p>' % ' and '.join(['%s is a %s' % (concept(r['lower']), concept(r['highest'])) for r in results])
+            for r in results:
+                s = '<p>&gt; %s is a %s</p>' % tuple([concept(r[k]) for k in ['lower', 'highest']])
+                html_results.append(s)
         else:
             html_results.append('<p>&gt; unable to process query</p>')
 
         html_query = request.args['q']
-        for w in matched:
+        for w in matched_tokens:
             html_query = re.sub(w, '<span class="highlighted">%s</span>' % w, html_query)
 
         return json.dumps({'html_results': html_results, 'html_query': html_query})
 
 
+    app.wsgi_app = SharedDataMiddleware(CherrokeeFix(app.wsgi_app, '/server'),
+                                        {'/': '../htdocs'})
+    app.run(debug=True, port=81)
 
-    # app.wsgi_app = SharedDataMiddleware(CherrokeeFix(app.wsgi_app, '/server'),
-    #                                     {'/': '/home/christian/projects/PopHR-ToyOnto/htdocs'})
-    # app.run(debug=True, port=81)
-
-    query_offline('diabetes prevalence')
+    #query_offline('diabetes prevalence')

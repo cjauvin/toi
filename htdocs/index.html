@@ -31,6 +31,14 @@
     overflow: auto;
 }
 
+p {
+    margin: 5px;
+}
+
+hr {
+    border: none; border-top: 1px dashed lightgrey;
+}
+
 #results .concept {
     color: RoyalBlue;
 }
@@ -76,7 +84,7 @@ q.keypress(function(e) {
                 $.each(data.html_results, function(i, html_res) {
                     $('#results').append(html_res);
                 });
-                //$('#results').append('<br>');
+                $('#results').append('<hr>');
                 if (data.html_query) {
                     q.html(data.html_query);
                 }
