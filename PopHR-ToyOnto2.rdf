@@ -1,0 +1,825 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY exmple "http://www.semanticweb.org/ontologies/2013/1/exmple.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:exmple="http://www.semanticweb.org/ontologies/2013/1/exmple.owl#">
+    <Ontology rdf:about="http://www.semanticweb.org/ontologies/2013/1/exmple.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#after -->
+
+    <ObjectProperty rdf:about="&exmple;after">
+        <rdfs:subPropertyOf rdf:resource="&exmple;hasTime"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#before -->
+
+    <ObjectProperty rdf:about="&exmple;before">
+        <rdfs:subPropertyOf rdf:resource="&exmple;hasTime"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#decreaseRiskOf -->
+
+    <ObjectProperty rdf:about="&exmple;decreaseRiskOf">
+        <rdfs:range rdf:resource="&exmple;Disease"/>
+        <rdfs:domain rdf:resource="&exmple;Exercise"/>
+        <rdfs:subPropertyOf rdf:resource="&exmple;hasEffectOn"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#hasBegining -->
+
+    <ObjectProperty rdf:about="&exmple;hasBegining">
+        <rdfs:subPropertyOf rdf:resource="&exmple;hasInterval"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#hasEffectOn -->
+
+    <ObjectProperty rdf:about="&exmple;hasEffectOn">
+        <rdfs:domain rdf:resource="&exmple;HealthDeterminants"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#hasEnd -->
+
+    <ObjectProperty rdf:about="&exmple;hasEnd">
+        <rdfs:subPropertyOf rdf:resource="&exmple;hasInterval"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#hasGranularity -->
+
+    <ObjectProperty rdf:about="&exmple;hasGranularity">
+        <rdfs:range rdf:resource="&exmple;Granularity"/>
+        <rdfs:domain rdf:resource="&exmple;Indicator"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#hasInterval -->
+
+    <ObjectProperty rdf:about="&exmple;hasInterval"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#hasTime -->
+
+    <ObjectProperty rdf:about="&exmple;hasTime"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#increaseRiskOf -->
+
+    <ObjectProperty rdf:about="&exmple;increaseRiskOf">
+        <rdfs:subPropertyOf rdf:resource="&exmple;hasEffectOn"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#indicatorPeriod -->
+
+    <ObjectProperty rdf:about="&exmple;indicatorPeriod">
+        <rdfs:domain rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <rdfs:range rdf:resource="&exmple;ValidInterval"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#isIndicatorOf -->
+
+    <ObjectProperty rdf:about="&exmple;isIndicatorOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#isLocatedIn -->
+
+    <ObjectProperty rdf:about="&exmple;isLocatedIn">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&exmple;City"/>
+        <rdfs:range rdf:resource="&exmple;Province"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#isLocationOf -->
+
+    <ObjectProperty rdf:about="&exmple;isLocationOf">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:range rdf:resource="&exmple;City"/>
+        <rdfs:domain rdf:resource="&exmple;Province"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#localizedTo -->
+
+    <ObjectProperty rdf:about="&exmple;localizedTo"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#hasValue -->
+
+    <DatatypeProperty rdf:about="&exmple;hasValue">
+        <rdfs:domain rdf:resource="&exmple;HealthDeterminants"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#isHigh -->
+
+    <DatatypeProperty rdf:about="&exmple;isHigh">
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#modifiability -->
+
+    <DatatypeProperty rdf:about="&exmple;modifiability"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Age -->
+
+    <Class rdf:about="&exmple;Age">
+        <rdfs:subClassOf rdf:resource="&exmple;PersonalLevelDeterminantsOfHealth"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#BodyMassIndex -->
+
+    <Class rdf:about="&exmple;BodyMassIndex">
+        <rdfs:subClassOf rdf:resource="&exmple;PersonalLevelDeterminantsOfHealth"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasEffectOn"/>
+                <someValuesFrom rdf:resource="&exmple;Diabetes"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#CIHI_Indicator -->
+
+    <Class rdf:about="&exmple;CIHI_Indicator">
+        <rdfs:subClassOf rdf:resource="&exmple;Indicator"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#City -->
+
+    <Class rdf:about="&exmple;City">
+        <rdfs:subClassOf rdf:resource="&exmple;Region"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Diabetes -->
+
+    <Class rdf:about="&exmple;Diabetes">
+        <rdfs:subClassOf rdf:resource="&exmple;Disease"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesIncidenceIndicator -->
+
+    <Class rdf:about="&exmple;DiabetesIncidenceIndicator">
+        <rdfs:subClassOf rdf:resource="&exmple;IncidenceIndicator"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasValue"/>
+                <qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</qualifiedCardinality>
+                <onDataRange rdf:resource="&xsd;integer"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;isIndicatorOf"/>
+                <someValuesFrom rdf:resource="&exmple;Diabetes"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicator -->
+
+    <Class rdf:about="&exmple;DiabetesPrevalenceIndicator">
+        <rdfs:subClassOf rdf:resource="&exmple;PrevalenceIndicator"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;isIndicatorOf"/>
+                <someValuesFrom rdf:resource="&exmple;Diabetes"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasValue"/>
+                <qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</qualifiedCardinality>
+                <onDataRange rdf:resource="&xsd;integer"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesTypeOne -->
+
+    <Class rdf:about="&exmple;DiabetesTypeOne">
+        <rdfs:subClassOf rdf:resource="&exmple;Diabetes"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesTypeTwo -->
+
+    <Class rdf:about="&exmple;DiabetesTypeTwo">
+        <rdfs:subClassOf rdf:resource="&exmple;Diabetes"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;increaseRiskOf"/>
+                <someValuesFrom rdf:resource="&exmple;Stroke"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Diet -->
+
+    <Class rdf:about="&exmple;Diet">
+        <rdfs:subClassOf rdf:resource="&exmple;PersonalLevelDeterminantsOfHealth"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasEffectOn"/>
+                <someValuesFrom rdf:resource="&exmple;BodyMassIndex"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasEffectOn"/>
+                <someValuesFrom rdf:resource="&exmple;Diabetes"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Disease -->
+
+    <Class rdf:about="&exmple;Disease">
+        <rdfs:subClassOf rdf:resource="&exmple;HealthIssue"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Exercise -->
+
+    <Class rdf:about="&exmple;Exercise">
+        <rdfs:subClassOf rdf:resource="&exmple;PersonalLevelDeterminantsOfHealth"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasEffectOn"/>
+                <someValuesFrom rdf:resource="&exmple;BodyMassIndex"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#FoodPurchased -->
+
+    <Class rdf:about="&exmple;FoodPurchased">
+        <rdfs:subClassOf rdf:resource="&exmple;PopulationLevelDeterminantsOfHealth"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasEffectOn"/>
+                <someValuesFrom rdf:resource="&exmple;Diet"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Granularity -->
+
+    <Class rdf:about="&exmple;Granularity">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#HealthDeterminants -->
+
+    <Class rdf:about="&exmple;HealthDeterminants">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasEffectOn"/>
+                <someValuesFrom rdf:resource="&exmple;Diabetes"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#HealthIssue -->
+
+    <Class rdf:about="&exmple;HealthIssue">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#HealthyDiet -->
+
+    <Class rdf:about="&exmple;HealthyDiet">
+        <rdfs:subClassOf rdf:resource="&exmple;Diet"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;decreaseRiskOf"/>
+                <someValuesFrom rdf:resource="&exmple;DiabetesTypeTwo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;modifiability"/>
+                <someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Hypertension -->
+
+    <Class rdf:about="&exmple;Hypertension">
+        <rdfs:subClassOf rdf:resource="&exmple;Disease"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;hasEffectOn"/>
+                <someValuesFrom rdf:resource="&exmple;Stroke"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#IncidenceIndicator -->
+
+    <Class rdf:about="&exmple;IncidenceIndicator">
+        <rdfs:subClassOf rdf:resource="&exmple;Indicator"/>
+        <disjointWith rdf:resource="&exmple;PrevalenceIndicator"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Income -->
+
+    <Class rdf:about="&exmple;Income">
+        <rdfs:subClassOf rdf:resource="&exmple;PersonalLevelDeterminantsOfHealth"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;decreaseRiskOf"/>
+                <someValuesFrom rdf:resource="&exmple;DiabetesIncidenceIndicator"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;decreaseRiskOf"/>
+                <someValuesFrom rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Indicator -->
+
+    <Class rdf:about="&exmple;Indicator">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#PersonalLevelDeterminantsOfHealth -->
+
+    <Class rdf:about="&exmple;PersonalLevelDeterminantsOfHealth">
+        <rdfs:subClassOf rdf:resource="&exmple;HealthDeterminants"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#PhysicalActivity -->
+
+    <Class rdf:about="&exmple;PhysicalActivity">
+        <rdfs:subClassOf rdf:resource="&exmple;Exercise"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;modifiability"/>
+                <someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;decreaseRiskOf"/>
+                <someValuesFrom rdf:resource="&exmple;DiabetesTypeTwo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="&exmple;PhysicalInactivity"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#PhysicalInactivity -->
+
+    <Class rdf:about="&exmple;PhysicalInactivity">
+        <rdfs:subClassOf rdf:resource="&exmple;Exercise"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;modifiability"/>
+                <someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;increaseRiskOf"/>
+                <someValuesFrom rdf:resource="&exmple;DiabetesTypeTwo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#PoorDiet -->
+
+    <Class rdf:about="&exmple;PoorDiet">
+        <rdfs:subClassOf rdf:resource="&exmple;Diet"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;increaseRiskOf"/>
+                <someValuesFrom rdf:resource="&exmple;DiabetesTypeTwo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&exmple;modifiability"/>
+                <someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#PopulationLevelDeterminantsOfHealth -->
+
+    <Class rdf:about="&exmple;PopulationLevelDeterminantsOfHealth">
+        <rdfs:subClassOf rdf:resource="&exmple;HealthDeterminants"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#PrevalenceIndicator -->
+
+    <Class rdf:about="&exmple;PrevalenceIndicator">
+        <rdfs:subClassOf rdf:resource="&exmple;Indicator"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Province -->
+
+    <Class rdf:about="&exmple;Province">
+        <rdfs:subClassOf rdf:resource="&exmple;Region"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Region -->
+
+    <Class rdf:about="&exmple;Region">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Stroke -->
+
+    <Class rdf:about="&exmple;Stroke">
+        <rdfs:subClassOf rdf:resource="&exmple;Disease"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Temporal -->
+
+    <Class rdf:about="&exmple;Temporal"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Treatment -->
+
+    <Class rdf:about="&exmple;Treatment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#ValidInterval -->
+
+    <Class rdf:about="&exmple;ValidInterval">
+        <rdfs:subClassOf rdf:resource="&exmple;Temporal"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#ValidTime -->
+
+    <Class rdf:about="&exmple;ValidTime">
+        <rdfs:subClassOf rdf:resource="&exmple;Temporal"/>
+    </Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#2004 -->
+
+    <NamedIndividual rdf:about="&exmple;2004">
+        <rdf:type rdf:resource="&exmple;Granularity"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#2005 -->
+
+    <NamedIndividual rdf:about="&exmple;2005">
+        <rdf:type rdf:resource="&exmple;Granularity"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#2006 -->
+
+    <NamedIndividual rdf:about="&exmple;2006">
+        <rdf:type rdf:resource="&exmple;Granularity"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#2007 -->
+
+    <NamedIndividual rdf:about="&exmple;2007">
+        <rdf:type rdf:resource="&exmple;Granularity"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#2650 -->
+
+    <NamedIndividual rdf:about="&exmple;2650">
+        <rdf:type rdf:resource="&exmple;DiabetesIncidenceIndicator"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorAnjou -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorAnjou">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">40</exmple:hasValue>
+        <exmple:isHigh>no</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2004"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorDorval -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorDorval">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">460</exmple:hasValue>
+        <exmple:isHigh>yes</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2006"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorLaSalle -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorLaSalle">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">320</exmple:hasValue>
+        <exmple:isHigh>yes</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2004"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorLachine -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorLachine">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">115</exmple:hasValue>
+        <exmple:isHigh>no</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2007"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorMontRoyal -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorMontRoyal">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">50</exmple:hasValue>
+        <exmple:isHigh>no</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2006"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorOutremont -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorOutremont">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">100</exmple:hasValue>
+        <exmple:isHigh>no</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2005"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorPlateauMontRoyal -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorPlateauMontRoyal">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">360</exmple:hasValue>
+        <exmple:isHigh>yes</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2004"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorSaintLaurent -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorSaintLaurent">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">470</exmple:hasValue>
+        <exmple:isHigh rdf:datatype="&xsd;string">yes</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2007"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorVerdun -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorVerdun">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">80</exmple:hasValue>
+        <exmple:isHigh>no</exmple:isHigh>
+        <exmple:indicatorPeriod rdf:resource="&exmple;2006"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#DiabetesPrevalenceIndicatorWestmont -->
+
+    <NamedIndividual rdf:about="&exmple;DiabetesPrevalenceIndicatorWestmont">
+        <rdf:type rdf:resource="&exmple;DiabetesPrevalenceIndicator"/>
+        <exmple:hasValue rdf:datatype="&xsd;integer">300</exmple:hasValue>
+        <exmple:isHigh>yes</exmple:isHigh>
+        <exmple:hasTime rdf:resource="&exmple;2007"/>
+        <exmple:localizedTo rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Montreal -->
+
+    <NamedIndividual rdf:about="&exmple;Montreal">
+        <rdf:type rdf:resource="&exmple;City"/>
+        <exmple:isLocatedIn rdf:resource="&exmple;Quebec"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#Quebec -->
+
+    <NamedIndividual rdf:about="&exmple;Quebec">
+        <rdf:type rdf:resource="&exmple;Province"/>
+        <exmple:isLocationOf rdf:resource="&exmple;Montreal"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#QuebecCity -->
+
+    <NamedIndividual rdf:about="&exmple;QuebecCity">
+        <rdf:type rdf:resource="&exmple;City"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2013/1/exmple.owl#two-years -->
+
+    <NamedIndividual rdf:about="&exmple;two-years">
+        <rdf:type rdf:resource="&exmple;ValidInterval"/>
+        <exmple:hasBegining rdf:resource="&exmple;2005"/>
+        <exmple:hasEnd rdf:resource="&exmple;2007"/>
+    </NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+

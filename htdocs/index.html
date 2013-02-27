@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<style type="text/css">
+
+#box {
+    background: #ededed;
+    padding: 35px;
+}
+
+#query {
+    font-size: 35px;
+    color: #999;
+    padding: 5px;
+    width: 1000px;
+    background: white;
+    text-align: left;
+    border: 1px solid #b8b8b8;
+}
+
+#query .highlighted {
+    background-color: yellow;
+}
+
+#results {
+    font-size: 30px;
+    overflow: auto;
+}
+
+#results .concept {
+    color: RoyalBlue;
+}
+
+</style>
+
+</head>
+
+
+<body>
+  <center>
+    <div id="box">
+       <div id="query" contenteditable="true" />
+    </div>
+  </center>
+
+<div id="results">
+</div>
+
+<script>
+
+
+var q = $('#query');
+q.focus();
+q.keypress(function(e) {
+    $('#query span').removeClass('highlighted');
+    if (e.which === 13) {
+        if (!$.trim(q.text())) { return false; }
+        if (q.text() === 'clear') {
+            $('#results').empty();
+            q.empty();
+            return false;
+        }
+        q.css('background', '#ededed');
+        $.ajax({
+            url: '/server/query',
+            dataType: 'json',
+            data: {
+                q: q.text()
+            },
+            success: function(data) {
+                q.css('background', 'white');
+                $.each(data.html_results, function(i, html_res) {
+                    $('#results').append(html_res);
+                });
+                //$('#results').append('<br>');
+                if (data.html_query) {
+                    q.html(data.html_query);
+                }
+            }
+        });
+        return false;
+    }
+});
+
+</script>
+
+
+</body>
+</html>
